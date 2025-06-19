@@ -50,7 +50,7 @@ async function fetchRandomQuote() {
    if (!id) return;
 
     try {
-        const response = await fetch(`/.netfily/functions/getQuotes?characterId=${id}`);
+        const response = await fetch(`/.netlify/functions/getQuotes?characterId=${id}`);
         if (!response.ok) throw new Error(`HTTP error status: ${error.status}`);
         const data = await response.json();
 
