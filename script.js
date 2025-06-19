@@ -45,7 +45,7 @@ function displayQuote(quote) {
     });
 }
 
-async function fetchRandomQuote() {
+async function fetchRandomQuote(e) {
    const id = e.target.value;
    if (!id) return;
 
@@ -83,7 +83,7 @@ async function loadCharacters() {
     });
 }
 
-newQuoteButton.addEventListener('click', fetchRandomQuote);
+newQuoteButton.addEventListener('click', (e) => { fetchRandomQuote() });
 characterSelect.addEventListener('change', (e) => { fetchRandomQuote() });
 
 copyQuoteButton.addEventListener('click', () => {
