@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>You Have My Quote</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="https://fav.farm/⚔️" />
+
+    <meta
+      name="description"
+      content="A random quote generator with light/dark mode and share features."
+    />
+    <meta property="og:title" content="You Have My Quote | Quote Generator" />
+    <meta
+      property="og:description"
+      content="Get random quotes, copy them, or share on Bluesky."
+    />
+  </head>
+  <body>
+    <main class="quote-box">
+      <h1>⚔️ You Have My Quote</h1>
+
+      <label for="dark-toggle" class="theme-toggle">
+        <span id="theme-icon">🌞</span>
+        <input type="checkbox" id="dark-toggle" />
+      </label>
+
+      <p id="quote-text">Loading quote...</p>
+      <p id="quote-author"></p>
+
+      <div class="actions">
+        <button id="new-quote">New Quote</button>
+        <button id="copy-quote">Copy</button>
+        <button id="share-bluesky">Share on Bluesky</button>
+      </div>
+
+      <div class="character-filter">
+        <label for="character-select">Character:</label>
+        <select id="character-select">
+          <option value="">Select a Character</option>
+        </select>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
