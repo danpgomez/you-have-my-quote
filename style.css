@@ -55,7 +55,7 @@ button:hover {
     color: #fff;
 }
 
-.category-filter {
+.character-filter {
     margin-top: 1rem;
 }
 
@@ -100,7 +100,6 @@ body.dark button:hover {
 body.dark #quote-author {
   color: #bbb;
 }
-
 
 .theme-toggle {
   margin-top: 1rem;

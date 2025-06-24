@@ -9,23 +9,11 @@ const themeIcon = document.getElementById('theme-icon');
 const shareButton = document.querySelector('#share-bluesky');
 
 toggle.checked = false;
-let currentCategory = 'all';
 let currentQuote = null;
 let currentCharacter = null;
+let currentCharacterId = null;
 
-// fetchRandomQuote();
 loadCharacters();
-
-function getFilteredQuotes() {
-    return currentCategory === 'all'
-        ? quotes
-        : quotes.filter(quote => quote.category === currentCategory);
-}
-
-function getRandomQuote() {
-    const filtered = getFilteredQuotes();
-    return filtered[Math.floor(Math.random() * filtered.length)];
-}
 
 function displayQuote(quote) {
     quoteText.classList.remove('fade-in');
@@ -34,9 +22,8 @@ function displayQuote(quote) {
     void quoteText.offsetWidth; // Force reflow to reset animation.
 
     currentQuote = quote;
-    currentCharacter = characterSelect.textContent;
 
-    quoteText.textContent = `"${quote.dialog}"`;
+    quoteText.textContent = `"${currentQuote}"`;
     quoteAuthor.textContent = `"${currentCharacter}"`;
 
     requestAnimationFrame(() => {
@@ -46,23 +33,22 @@ function displayQuote(quote) {
 }
 
 async function fetchRandomQuote(e) {
-   const id = e.target.value;
-   if (!id) return;
+   const id = e.target.value ? e.target.value : currentCharacterId;
+   currentCharacterId = id;
+   if (!currentCharacterId) return;
 
     try {
-        const response = await fetch(`/.netlify/functions/getQuotes?characterId=${id}`);
+        const response = await fetch(`/.netlify/functions/getQuotes?characterId=${currentCharacterId}`);
         if (!response.ok) throw new Error(`HTTP error status: ${error.status}`);
         const data = await response.json();
 
-        if (data.length === 0) {
-            displayQuote({
-                dialog: 'No quotes found',
-                character: '🤷'
-            });
+        if (data.docs.length === 0) {
+            quoteText.textContent = `No quotes found for ${currentCharacter}.`;
+            quoteAuthor.textContent = '';
             return;
         }
 
-        const randomQuote = data.docs[Math.floor(Math.random * data.docs.length)];
+        const randomQuote = data.docs[Math.floor(Math.random() * data.docs.length)].dialog;
         displayQuote(randomQuote);
     } catch (error) {
         quoteText.textContent = '⚠️ Failed to load quote';
@@ -83,12 +69,20 @@ async function loadCharacters() {
     });
 }
 
-newQuoteButton.addEventListener('click', (e) => { fetchRandomQuote(e) });
-characterSelect.addEventListener('change', (e) => { fetchRandomQuote(e) });
+newQuoteButton.addEventListener('click', (e) => { 
+    fetchRandomQuote(e);
+    const characterIndex = e.target.selectedIndex;
+    currentCharacter = e.target.options[characterIndex].textContent;
+});
+characterSelect.addEventListener('change', (e) => { 
+    fetchRandomQuote(e);
+    const characterIndex = e.target.selectedIndex;
+    currentCharacter = e.target.options[characterIndex].textContent;
+});
 
 copyQuoteButton.addEventListener('click', () => {
     if (currentQuote) {
-        const textToCopy = `"${currentQuote.text}" - ${currentCharacter}`;
+        const textToCopy = `"${currentQuote}" - ${currentCharacter}`;
         navigator.clipboard.writeText(textToCopy)
             .then(() => {
                 copyQuoteButton.textContent = 'Copied!';
@@ -105,7 +99,7 @@ toggle.addEventListener('change', () => {
 
 shareButton.addEventListener('click', () => {
     if (currentQuote) {
-        const text = `"${currentQuote.text}" - ${currentCharacter}`;
+        const text = `"${currentQuote}" - ${currentCharacter}`;
         const url = `https://bsky.app/intent/compose?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank');
     }
