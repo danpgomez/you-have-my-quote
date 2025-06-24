@@ -83,8 +83,8 @@ async function loadCharacters() {
     });
 }
 
-newQuoteButton.addEventListener('click', (e) => { fetchRandomQuote() });
-characterSelect.addEventListener('change', (e) => { fetchRandomQuote() });
+newQuoteButton.addEventListener('click', (e) => { fetchRandomQuote(e) });
+characterSelect.addEventListener('change', (e) => { fetchRandomQuote(e) });
 
 copyQuoteButton.addEventListener('click', () => {
     if (currentQuote) {
