@@ -12,7 +12,7 @@ A minimalist Lord of The Rings quote generator that delivers bite-sized wisdom, 
 
 ## 🔗 Live Demo
 
-👉 [Try 'You Have My Quote'](https://danpgomez.github.io/yhmq/)
+👉 [Try 'You Have My Quote'](https://you-have-my-quote.netlify.app/)
 
 ## 📸 Screenshots
 
