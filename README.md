@@ -1,10 +1,10 @@
 # You Have My Quote 💬✨
 
-A minimalist quote generator that delivers bite-sized wisdom, humor, and inspiration — built with vanilla JavaScript, HTML, and CSS.
+A minimalist Lord of The Rings quote generator that delivers bite-sized wisdom, humor, and inspiration — built with vanilla JavaScript, HTML, and CSS.
 
 ## ✨ Features
 
-- Random quotes with category filtering (e.g., wisdom, motivation, humor)
+- Random quotes with character filtering
 - Dark/Light mode toggle 🌞🌙
 - Smooth quote transition animations
 - Copy to clipboard & share on Bluesky
@@ -12,7 +12,7 @@ A minimalist quote generator that delivers bite-sized wisdom, humor, and inspira
 
 ## 🔗 Live Demo
 
-👉 [Try You Have My Quote](https://danpgomez.github.io/yhmq/)
+👉 [Try 'You Have My Quote'](https://danpgomez.github.io/yhmq/)
 
 ## 📸 Screenshots
 
@@ -26,8 +26,9 @@ A minimalist quote generator that delivers bite-sized wisdom, humor, and inspira
 - HTML5 / CSS3
 - Vanilla JavaScript
 - Responsive design
+- Use of Netlify functions
 
 ## 🔮 Planned Enhancements
 
-- User-submitted quotes
+- Filter/remove characters with no quotes
 - Favorite quote saving with localStorage
